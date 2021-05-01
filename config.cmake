@@ -1,0 +1,2 @@
+set(PROJECT_NAME "Aion")
+set(PROJECT_VERSION 0.1.0)
