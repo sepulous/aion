@@ -20,6 +20,7 @@ find_package(wxWidgets REQUIRED)
 
 set(SRCS
     main.cpp
+    main_window.cpp
 )
 
 include(${wxWidgets_USE_FILE})
