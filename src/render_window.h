@@ -1,14 +1,26 @@
-#include <wx/wx.h>
-#include "control_window.h"
+#ifndef RENDER_WINDOW_H
+#define RENDER_WINDOW_H
 
-class RenderWindow : public wxFrame
+#include <wx/wx.h>
+#include <wx/bannerwindow.h>
+#include "pixel_data.h"
+#include "fractals/fractal.h"
+
+class RenderWindow : public wxBannerWindow
 {
 private:
-    unsigned char* imageData;
-    unsigned int* colorPalette;
+    PixelData* m_pixelData;
+    wxBitmap m_imageBuffer;
+    unsigned int* m_colorPalette;
 
 public:
-    RenderWindow();
+    RenderWindow(wxFrame* parent);
     void SetColorPalette();
-    void RenderFractal();
+    void RenderFractal(Fractal* fractal);
+    void OnPaint(wxPaintEvent& event);
+
+protected:
+    DECLARE_EVENT_TABLE()
 };
+
+#endif

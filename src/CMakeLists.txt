@@ -21,6 +21,9 @@ find_package(wxWidgets REQUIRED)
 set(SRCS
     main.cpp
     main_window.cpp
+    control_window.cpp
+    render_window.cpp
+    pixel_data.cpp
 )
 
 include(${wxWidgets_USE_FILE})
