@@ -18,6 +18,7 @@ RenderWindow::RenderWindow(wxFrame* parent)
     int height = parentHeight;
     SetSize(wxSize(width, height));
     SetPosition(wxPoint(parentWidth - width, 0));
+    m_imageBuffer = new wxBitmap(width, height, 24);
     m_pixelData = new PixelData(width, height);
 }
 
@@ -25,14 +26,13 @@ void RenderWindow::RenderFractal(Fractal* fractal)
 {
     fractal->Render(m_pixelData);
 
-    int width = this->GetSize().GetWidth();
-    int height = this->GetSize().GetHeight();
+    int width = m_pixelData->GetWidth();
+    int height = m_pixelData->GetHeight();
     
-    wxClientDC dc(this);
-    wxBitmap b(width, height, 24);
-    wxNativePixelData data(b);
+    wxNativePixelData data(*m_imageBuffer);
 
     if (!data) {
+        std::cout << "NO DATA" << std::endl;
         return;
     }
 
@@ -42,7 +42,7 @@ void RenderWindow::RenderFractal(Fractal* fractal)
     auto pixelData = m_pixelData->GetData();
     for (int y = 0; y < height; y++) {
         wxNativePixelData::Iterator rowStart = p;
-        for (int x = 0; x < width; x++) {
+        for (int x = 0; x < width; x++, p++) {
             p.Red() = pixelData[currentPixelDataLocation++];
             p.Green() = pixelData[currentPixelDataLocation++];
             p.Blue() = pixelData[currentPixelDataLocation++];
@@ -51,14 +51,14 @@ void RenderWindow::RenderFractal(Fractal* fractal)
         p.OffsetY(data, 1);
     }
 
-    m_imageBuffer = b;
     this->Refresh();
+    this->Update();
 }
 
 void RenderWindow::OnPaint(wxPaintEvent& event)
 {
     wxPaintDC dc(this);
-    if (m_imageBuffer.IsOk()) {
-        dc.DrawBitmap(m_imageBuffer, 0, 0);
+    if (m_imageBuffer->IsOk()) {
+        dc.DrawBitmap(*m_imageBuffer, 0, 0);
     }
 }

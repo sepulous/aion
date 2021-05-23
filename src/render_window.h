@@ -10,7 +10,7 @@ class RenderWindow : public wxBannerWindow
 {
 private:
     PixelData* m_pixelData;
-    wxBitmap m_imageBuffer;
+    wxBitmap* m_imageBuffer;
     unsigned int* m_colorPalette;
 
 public:
