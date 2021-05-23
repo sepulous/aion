@@ -19,7 +19,7 @@ public:
         int width = pixelData->GetWidth();
         int height = pixelData->GetHeight();
 
-        const double scale = 0.003;
+        const double scale = 0.005;
         const int max_iteration = 1000;
 
         double iteration;
@@ -36,16 +36,14 @@ public:
         double nu;
 
         int xOffset = (int)(width / 1.4);
-        int yOffset=  (int)(height / 2.08);
+        int yOffset = (int)(height / 2.08);
 
         for (int Py = -yOffset; Py < height - yOffset; Py++) {
             for (int Px = -xOffset; Px < width - xOffset; Px++) {
                 x0 = Px * scale;
                 y0 = Py * scale;
-                x2 = 0.0;
-                y2 = 0.0;
-                x = 0.0;
-                y = 0.0;
+                x2 = 0.0, y2 = 0.0;
+                x = 0.0, y = 0.0;
                 iteration = 0;
                 while (x*x + y*y <= 65536 && iteration <= max_iteration) {
                     y = (x+x)*y + y0;
