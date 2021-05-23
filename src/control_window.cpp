@@ -24,6 +24,7 @@ ControlWindow::ControlWindow(wxFrame* parent, RenderWindow* renderWindow)
     int fractalDropdownHeight = 35;
     int fractalDropdownXOffset = width * 0.1;
     int fractalDropdownYOffset = 10;
+    fractalDropdown->SetEditable(false);
     fractalDropdown->SetSize(wxSize(fractalDropdownWidth, fractalDropdownHeight));
     fractalDropdown->SetPosition(wxPoint(fractalDropdownXOffset, fractalDropdownYOffset));
     for (auto fractal : fractalMap) {
