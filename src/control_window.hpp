@@ -3,23 +3,26 @@
 
 #include <unordered_map>
 #include <wx/wx.h>
-#include "render_window.h"
-#include "fractals/fractal.h"
+#include "render_window.hpp"
+#include "fractals/fractal.hpp"
+#include "fractals/color_palettes.hpp"
 
 #define FRACTAL_DROPDOWN 10
-#define RENDER_BUTTON 11
+#define PALETTE_DROPDOWN 11
+#define RENDER_BUTTON 12
 
 class ControlWindow : public wxPanel
 {
 private:
     RenderWindow* renderWindow;
     wxComboBox* fractalDropdown;
+    wxComboBox* paletteDropdown;
     wxButton* renderButton;
     std::unordered_map<wxString, Fractal*> fractalMap;
+    std::unordered_map<wxString, COLOR_PALETTE> paletteMap;
 
 public:
     ControlWindow(wxFrame* parent, RenderWindow* renderWindow);
-    void ChangeSelectedColorPalette(wxCommandEvent& event);
     void RenderFractal(wxCommandEvent& event);
 
 private:

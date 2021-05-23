@@ -3,19 +3,17 @@
 
 #include <cmath>
 #include <wx/wx.h>
-#include "fractal.h"
-#include "../pixel_data.h"
-#include "color_palettes.h"
+#include "fractal.hpp"
+#include "../pixel_data.hpp"
+#include "color_palettes.hpp"
 
 class Mandelbrot : public Fractal
 {
 public:
     Mandelbrot() {};
 
-    void Render(PixelData* pixelData) override
+    void Render(PixelData* pixelData, COLOR_PALETTE colorPalette) override
     {
-        COLOR_PALETTE palette = PALETTE_SUMMER;
-
         int width = pixelData->GetWidth();
         int height = pixelData->GetHeight();
 
@@ -58,8 +56,8 @@ public:
                     nu = log2(log_zn / log_2) / log_2;
                     iteration += 1 - nu;
 
-                    color1 = palette[((unsigned int)floor(iteration)) % 20];
-                    color2 = palette[((unsigned int)floor(iteration + 1)) % 20];
+                    color1 = colorPalette[((unsigned int)floor(iteration)) % 20];
+                    color2 = colorPalette[((unsigned int)floor(iteration + 1)) % 20];
                     finalColor = lerp(color1, color2, iteration - ((unsigned int)iteration));
                 } else {
                     finalColor = 0x0;

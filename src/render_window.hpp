@@ -3,8 +3,9 @@
 
 #include <wx/wx.h>
 #include <wx/bannerwindow.h>
-#include "pixel_data.h"
-#include "fractals/fractal.h"
+#include "pixel_data.hpp"
+#include "fractals/color_palettes.hpp"
+#include "fractals/fractal.hpp"
 
 class RenderWindow : public wxBannerWindow
 {
@@ -16,7 +17,7 @@ private:
 public:
     RenderWindow(wxFrame* parent);
     void SetColorPalette();
-    void RenderFractal(Fractal* fractal);
+    void RenderFractal(Fractal* fractal, COLOR_PALETTE colorPalette);
     void OnPaint(wxPaintEvent& event);
 
 protected:

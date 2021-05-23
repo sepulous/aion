@@ -2,8 +2,9 @@
 #include <wx/rawbmp.h>
 #include <wx/event.h>
 #include <wx/bannerwindow.h>
-#include "render_window.h"
-#include "fractals/fractal.h"
+#include "render_window.hpp"
+#include "fractals/color_palettes.hpp"
+#include "fractals/fractal.hpp"
 
 BEGIN_EVENT_TABLE(RenderWindow, wxBannerWindow)
     EVT_PAINT(RenderWindow::OnPaint)
@@ -22,9 +23,9 @@ RenderWindow::RenderWindow(wxFrame* parent)
     m_pixelData = new PixelData(width, height);
 }
 
-void RenderWindow::RenderFractal(Fractal* fractal)
+void RenderWindow::RenderFractal(Fractal* fractal, COLOR_PALETTE colorPalette)
 {
-    fractal->Render(m_pixelData);
+    fractal->Render(m_pixelData, colorPalette);
 
     int width = m_pixelData->GetWidth();
     int height = m_pixelData->GetHeight();

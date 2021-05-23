@@ -1,8 +1,8 @@
 #include <wx/wx.h>
 #include <wx/display.h>
-#include "main_window.h"
-#include "control_window.h"
-#include "render_window.h"
+#include "main_window.hpp"
+#include "control_window.hpp"
+#include "render_window.hpp"
 
 MainWindow::MainWindow(wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 {

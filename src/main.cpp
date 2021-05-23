@@ -1,5 +1,5 @@
 #include <iostream>
-#include "main_window.h"
+#include "main_window.hpp"
 
 #define AION_VERSION "0.1.0-indev"
 

@@ -1,4 +1,4 @@
-#include "pixel_data.h"
+#include "pixel_data.hpp"
 
 PixelData::PixelData(int width, int height)
 {
